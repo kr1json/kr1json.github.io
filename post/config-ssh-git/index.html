@@ -189,7 +189,6 @@ Generating <span class="keyword">public</span>/<span class="keyword">private</sp
 Enter file <span class="keyword">in</span> which <span class="keyword">to</span> save the <span class="keyword">key</span> (/Users/kr1json/.ssh/id_rsa): /User/kr1json/.ssh/kr1json.github
 </code></pre><p>private Key와 public Key가 생성된다. github에는 public Key를 등록하면 된다. <a href="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/">github 등록 방법 링크</a></p><pre><code class="bash">$ ls ~/<span class="preprocessor">.ssh</span>
 kr1json<span class="preprocessor">.github</span> kr1json<span class="preprocessor">.github</span><span class="preprocessor">.pub</span>
-
 </code></pre>
 <h3 id="toc_1">~/.ssh/config 설정</h3>
 <pre><code class="">Host github<span class="preprocessor">.com</span>
@@ -203,20 +202,32 @@ kr1json<span class="preprocessor">.github</span> kr1json<span class="preprocesso
 Hi kr1json! You've successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span> provide shell access.
 </code></pre>
 <h3 id="toc_3">.git/config 설정 변경</h3>
-<p>remote url을 수정해준다. </p><pre><code class="bash">[core]
-    repositoryformatversion = <span class="number">0</span>
-    filemode = <span class="keyword">true</span>
-    bare = <span class="keyword">false</span>
-    logallrefupdates = <span class="keyword">true</span>
-    ignorecase = <span class="keyword">true</span>
-    precomposeunicode = <span class="keyword">true</span>
+<p>remote url을 수정해준다. </p><pre><code class="bash"><span class="keyword">...</span>
 [remote <span class="string">"origin"</span>]
-    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>kr1json/kr1json.github.io.git
-    fetch = +refs/heads/*<span class="symbol">:refs/remotes/origin/*</span>
-[branch <span class="string">"master"</span>]
-    remote = origin
-    merge = refs/heads/master
+    url = git@github.com:kr1json/kr1json.github.io.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+<span class="keyword">...</span>
+</code></pre>
+<h4 id="toc_4">다른계정을 더 추가하는 방법</h4>
 
+<ul>
+<li>~/.ssh/config</li>
+</ul>
+<pre><code class="">Host kr1json2<span class="preprocessor">.github</span><span class="preprocessor">.com</span>
+    HostName github<span class="preprocessor">.com</span>
+    User git
+    IdentityFile ~/<span class="preprocessor">.ssh</span>/kr1json2<span class="preprocessor">.github</span>
+    AddKeysToAgent yes
+    UseKeychain yes
+</code></pre>
+<ul>
+<li>.git/config</li>
+</ul>
+<pre><code class="bash"><span class="keyword">...</span>
+[remote <span class="string">"origin"</span>]
+    url = git@kr1json2.github.com:kr1json2/kr1json.github.io.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+<span class="keyword">...</span>
 </code></pre>
                         </div>
                         <hr />
