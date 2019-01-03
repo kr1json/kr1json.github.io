@@ -207,7 +207,7 @@
                         </div>
 
                         <div class="markdown-wrapper">
-                            <p>특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.</p><p>모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.</p><p>white list에 지정할 URL은 naver.com 같은 public URL이라서 <code>recursion yes</code>를 셋팅해야하고</p><p>클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 <code>allow-query { any; }</code>로 설정 해야합니다.</p><p>즉, 외부에서의 <strong>query</strong>와 <strong>recursion</strong> 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.</p>
+                            <p>특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.</p><p>모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.</p><p>white list에 지정할 URL은 google.com 같은 public URL이라서 <code>recursion yes</code>를 셋팅해야하고</p><p>클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 <code>allow-query { any; }</code>로 설정 해야합니다.</p><p>즉, 외부에서의 <strong>query</strong>와 <strong>recursion</strong> 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.</p>
 <h4 id="toc_6">/etc/bind/named.conf</h4>
 <pre><code class="bash">options {
     recursion yes<span class="comment">;              # localhost에 설정되지 않은 DNS도 찾아서 응답해줍니다. </span>
@@ -243,8 +243,8 @@ zone <span class="string">"rpz"</span> {
 
                       <span class="keyword">IN</span>     NS      localhost.
 
-naver<span class="preprocessor">.com</span>                 CNAME   rpz-passthru. <span class="preprocessor"># 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  </span>
-*<span class="preprocessor">.naver</span><span class="preprocessor">.com</span>               CNAME   rpz-passthru.
+google<span class="preprocessor">.com</span>                 CNAME   rpz-passthru. <span class="preprocessor"># 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  </span>
+*<span class="preprocessor">.google</span><span class="preprocessor">.com</span>               CNAME   rpz-passthru.
 </code></pre>
 <h4 id="toc_8">/etc/bind/db.rpz</h4>
 <pre><code class="bash">$TTL <span class="number">604800</span>
