@@ -25,43 +25,43 @@
     </url>
     
     <url>
-        <loc>https://kr1json.github.io/tags</loc>
+        <loc>https://kr1json.github.io/tags/</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/ssh</loc>
+            <loc>https://kr1json.github.io/tags/ssh/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/git</loc>
+            <loc>https://kr1json.github.io/tags/git/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/linux</loc>
+            <loc>https://kr1json.github.io/tags/linux/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/bind</loc>
+            <loc>https://kr1json.github.io/tags/bind/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/dns</loc>
+            <loc>https://kr1json.github.io/tags/dns/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/server</loc>
+            <loc>https://kr1json.github.io/tags/server/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
