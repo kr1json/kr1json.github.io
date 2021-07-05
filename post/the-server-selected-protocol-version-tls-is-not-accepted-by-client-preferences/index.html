@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>RPZ(response policy zones)을 통한 DNS WhiteList 관리 |  망각의 유산</title>
+    <title>The server selected protocol version TLS is not accepted by client preferences |  망각의 유산</title>
     <meta name="description" content="">
     <meta name="author" content="json">
     <meta name="keywords" content="javascript,linux" />
@@ -74,7 +74,7 @@
     </div>
 
     
-<link href="/css/code/tomorrow-night.css" rel="stylesheet">
+<link href="/css/code/default.css" rel="stylesheet">
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -108,7 +108,7 @@
                     <h3>About this Article</h3>
                     <p>
                         <h5>Date Released:</h5>
-                        <span>Wednesday, January 2, 2019 4:23 PM</span>
+                        <span>Sunday, July 4, 2021 2:48 PM</span>
                     </p>
                 </div>
             </div>
@@ -187,17 +187,17 @@
                     <div class="well bg">
                         
                         <div class="page-header">
-                            <h1>RPZ(response policy zones)을 통한 DNS WhiteList 관리</h1>
+                            <h1>The server selected protocol version TLS is not accepted by client preferences</h1>
                         </div>
 
                         <div class="pull-right social-area">
                                                 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ko" data-text="RPZ(response policy zones)을 통한 DNS WhiteList 관리 -" data-url="https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones" data-via="kr1json">Tweet</a>
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ko" data-text="The server selected protocol version TLS is not accepted by client preferences -" data-url="https://kr1json.github.io/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" data-via="kr1json">Tweet</a>
                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                     
                                                 
                             <!-- Place this tag where you want the +1 button to render -->
-                            <g:plusone href="/post/how-to-configure-bind-dns-rpz-response-policy-zones" size="medium"></g:plusone>
+                            <g:plusone href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" size="medium"></g:plusone>
 
                             <!-- Place this render call where appropriate -->
                             <script type="text/javascript">
@@ -210,7 +210,7 @@
                     
 
                             
-        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial" data-href="https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones"></div>
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial" data-href="https://kr1json.github.io/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences"></div>
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
@@ -223,94 +223,81 @@
                         </div>
 
                         <div class="markdown-wrapper">
-                            <p>특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.</p>
-<p>모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.</p>
-<p>white list에 지정할 URL은 <a href="http://google.com">google.com</a> 같은 public URL이라서 <code>recursion yes</code>를 셋팅해야하고</p>
-<p>클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 <code>allow-query { any; }</code>로 설정 해야합니다.</p>
-<p>즉, 외부에서의 <strong>query</strong>와 <strong>recursion</strong> 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.</p>
-<h4>/etc/bind/named.conf</h4>
-<pre><code class="bash"><span class="hljs-keyword">options</span> {
-	recursion yes;              # localhost에 설정되지 않은 DNS도 찾아서 응답해줍니다. 
-	allow-query { <span class="hljs-keyword">any</span>; };       # 모든 쿼리를 허용합니다.
-	response-<span class="hljs-keyword">policy</span> {           # RPZ 설정
-		<span class="hljs-type">zone</span> &quot;rpz.whitelist&quot;;   
-		<span class="hljs-type">zone</span> &quot;rpz&quot;;
-	};
-};
-
-<span class="hljs-type">zone</span> &quot;rpz.whitelist&quot; {
-    <span class="hljs-keyword">type</span> master;
-    file &quot;/etc/bind/db.rpz.whitelist&quot;;
-    allow-query { localhost; };
-    allow-transfer { <span class="hljs-keyword">none</span>; };
-};
-
-<span class="hljs-type">zone</span> &quot;rpz&quot; {
-    <span class="hljs-keyword">type</span> master;
-    file &quot;/etc/bind/db.rpz&quot;;
-    allow-query { localhost; };
-    allow-transfer { <span class="hljs-keyword">none</span>; };
-};
+                            <p>AWS RDS mysql을 사용하는 java로 만든 서버가 있는데 2년동안 잘 돌아가다가 어느날 갑자기 장애 문자가 왔습니다.</p>
+<p>에러로그를 확인해보니 mysql에 TLS 1.0으로 접속을 못하고 있네요. 갑자기?? 😳</p>
+<h3>에러로그</h3>
+<pre><code class="shell"><span class="hljs-string">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]</span>
 </code></pre>
-<h4>/etc/bind/db.rpz.whitelist</h4>
-<pre><code class="bash"><span class="hljs-meta">$TTL</span> <span class="hljs-number">604800</span>
-@            <span class="hljs-keyword">IN</span>    <span class="hljs-keyword">SOA</span>  localhost. root.localhost.  (
-                      <span class="hljs-number">2018122401</span>   <span class="hljs-comment">; serial</span>
-                      <span class="hljs-number">360</span>  <span class="hljs-comment">; refresh</span>
-                      <span class="hljs-number">360</span>  <span class="hljs-comment">; retry</span>
-                      <span class="hljs-number">1</span>W  <span class="hljs-comment">; expiry</span>
-                      <span class="hljs-number">3</span>H) <span class="hljs-comment">; minimum</span>
-
-                      <span class="hljs-keyword">IN</span>     <span class="hljs-keyword">NS</span>      localhost.
-
-google.com                 <span class="hljs-keyword">CNAME</span>   rpz-passthru. # 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  
-*.google.com               <span class="hljs-keyword">CNAME</span>   rpz-passthru.
-</code></pre>
-<h4>/etc/bind/db.rpz</h4>
-<pre><code class="bash"><span class="hljs-meta">$TTL</span> <span class="hljs-number">604800</span>
-@            <span class="hljs-keyword">IN</span>    <span class="hljs-keyword">SOA</span>  localhost. root.localhost.  (
-                     <span class="hljs-number">2018122401</span>   <span class="hljs-comment">; serial</span>
-                     <span class="hljs-number">360</span>  <span class="hljs-comment">; refresh</span>
-                     <span class="hljs-number">1</span>H  <span class="hljs-comment">; retry</span>
-                     <span class="hljs-number">1</span>W  <span class="hljs-comment">; expiry</span>
-                     <span class="hljs-number">3</span>H) <span class="hljs-comment">; minimum</span>
-
-             <span class="hljs-keyword">IN</span>      <span class="hljs-keyword">NS</span>    localhost.
-
-*   <span class="hljs-keyword">A</span>   <span class="hljs-number">1.1.1.1</span> # 나의 DNS Server IP
-</code></pre>
-<h5>참조</h5>
+<p>구글신을 소환해 봅니다.</p>
+<p><img src="https://miro.medium.com/max/670/1*IoRC6yo1H83JZONHXo29iw.jpeg" alt="GodGoogle"></p>
+<p>보안 때문에 클라이언트에서 <code>TLS 1.0</code>, <code>TLS 1.1</code> 을 지원하지 비활성화 했다는군요.</p>
+<p><code>$JAVA_HOME/jre/lib/security/java.security</code> 파일을 아래와 같이 수정하면 됩니다.</p>
 <ul>
-<li><a href="https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html">https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html</a></li>
-<li><a href="https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf">https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf</a></li>
+<li>참조 <a href="https://aws.amazon.com/ko/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/">https://aws.amazon.com/ko/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/</a></li>
 </ul>
+<h3>수정 전</h3>
+<pre><code class="shell"><span class="hljs-attribute">jdk</span>.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.<span class="hljs-number">1</span>, RC4, DES, MD5withRSA, \
+    <span class="hljs-attribute">DH</span> keySize &lt; <span class="hljs-number">1024</span>, EC keySize &lt; <span class="hljs-number">224</span>, <span class="hljs-number">3</span>DES_EDE_CBC, anon, NULL, \
+    <span class="hljs-attribute">include</span> jdk.disabled.namedCurves
+</code></pre>
+<h3>수정 후</h3>
+<pre><code class="shell"><span class="hljs-attribute">jdk</span>.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
+    <span class="hljs-attribute">DH</span> keySize &lt; <span class="hljs-number">1024</span>, EC keySize &lt; <span class="hljs-number">224</span>, <span class="hljs-number">3</span>DES_EDE_CBC, anon, NULL, \
+    <span class="hljs-attribute">include</span> jdk.disabled.namedCurves
+</code></pre>
+<p>근데 왜 잘되다가 갑자기 안되었을까요? 일단 현재 장애 중이니 조치 먼저 합니다.</p>
+<h3>조치 방법</h3>
+<ol>
+<li><code>$JAVA_HOME/jre/lib/security/java.security</code> 파일을 찾습니다.</li>
+</ol>
+<pre><code class="shell"> # java home을 알고있으면 바로 가면 됩니다. 하지만 java home 이 어딘지 모릅니다 ㅠㅠ
+ $ which java
+ <span class="hljs-regexp">/usr/</span>bin/java
+ 
+ $ ls -al <span class="hljs-regexp">/usr/</span>bin/java
+ lrwxrwxrwx <span class="hljs-number">1</span> root root <span class="hljs-number">22</span> Dec <span class="hljs-number">13</span>  <span class="hljs-number">2017</span> <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/java -&gt; /</span>etc<span class="hljs-regexp">/alternatives/</span>java
+ 
+ $ ls -al <span class="hljs-regexp">/etc/</span>alternatives/java
+ lrwxrwxrwx <span class="hljs-number">1</span> root root <span class="hljs-number">46</span> Dec <span class="hljs-number">13</span>  <span class="hljs-number">2017</span> <span class="hljs-regexp">/etc/</span>alternatives<span class="hljs-regexp">/java -&gt; /u</span>sr<span class="hljs-regexp">/lib/</span>jvm<span class="hljs-regexp">/java-8-openjdk-amd64/</span>jre<span class="hljs-regexp">/bin/</span>java
+ 
+ $ ls -al <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64<span class="hljs-regexp">/jre/</span>bin/java
+ # 링크가 아닌 파일인거 보니 <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64 여기가 java home 인것 같네요 
+ -rwxr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">6464</span> Apr <span class="hljs-number">21</span> <span class="hljs-number">15</span>:<span class="hljs-number">31</span> <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64<span class="hljs-regexp">/jre/</span>bin/java 
+</code></pre>
+<ol start="2">
+<li>
+<p>vi /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security</p>
+</li>
+<li>
+<p>프로세스 재 실행</p>
+</li>
+</ol>
+<p>이제 제대로 동작이 됩니다.</p>
+<p>그럼 갑자기 안 된 원인을 찾아 볼까요?</p>
+<p>제대로 되는데 굳이… 담배나 한대 피러 갑니다.</p>
 
                         </div>
                         <hr />
                         <div>
                             <strong>tags</strong> :
                             
-                                <a href="/tags/linux">linux</a>&nbsp;
+                                <a href="/tags/tls">tls</a>&nbsp;
                             
-                                <a href="/tags/bind">bind</a>&nbsp;
+                                <a href="/tags/mysql">mysql</a>&nbsp;
                             
-                                <a href="/tags/dns">dns</a>&nbsp;
+                                <a href="/tags/ssl">ssl</a>&nbsp;
                             
-                                <a href="/tags/server">server</a>&nbsp;
+                                <a href="/tags/java">java</a>&nbsp;
                             
                         </div>
                         <hr />
                                             
                         <div class="row-fluid">
                             
-                            <div class="pull-right">
-                                <a href="/post/open" class="btn btn-info">열다 <i class="icon-white icon-chevron-right"></i></a>
-                            </div>
-                            
 
                             
                             <div class="pull-left">
-                                <a href="/post/config-ssh-git" class="btn btn-info"><i class="icon-white icon-chevron-left"></i> git ssh key 설정</a>
+                                <a href="/post/open" class="btn btn-info"><i class="icon-white icon-chevron-left"></i> 열다</a>
                             </div>
                             
                         </div>
