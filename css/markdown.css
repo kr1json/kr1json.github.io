@@ -11,7 +11,7 @@
 }
 
 
-.markdown-wrapper pre, 
+.markdown-wrapper pre,
 .markdown-wrapper code {
   /*padding: 0;*/
 }
@@ -31,19 +31,20 @@
   font-family: Consolas, Inconsolata, Courier, monospace;
 }
 
-.markdown-wrapper ul, 
+.markdown-wrapper ul,
 .markdown-wrapper ol {
   padding-left: 2em;
 }
 
-.markdown-wrapper p, 
-.markdown-wrapper blockquote, 
-.markdown-wrapper ul, 
-.markdown-wrapper ol, 
-.markdown-wrapper dl, 
-.markdown-wrapper li, 
-.markdown-wrapper table, 
+.markdown-wrapper p,
+.markdown-wrapper blockquote,
+.markdown-wrapper ul,
+.markdown-wrapper ol,
+.markdown-wrapper dl,
+.markdown-wrapper li,
+.markdown-wrapper table,
 .markdown-wrapper pre {
+  font-size: 1.2em;
   margin: 1em 0;
 }
 
@@ -74,14 +75,14 @@
   quotes: none;
 }
 
-.markdown-wrapper blockquote::before, 
-.markdown-wrapper blockquote::after, 
-.markdown-wrapper q::before, 
+.markdown-wrapper blockquote::before,
+.markdown-wrapper blockquote::after,
+.markdown-wrapper q::before,
 .markdown-wrapper q::after {
   content: none;
 }
 
-.markdown-wrapper a:link, 
+.markdown-wrapper a:link,
 .markdown-wrapper a:visited {
   /*color: #33e;*/
   /*text-decoration: none;*/
@@ -93,11 +94,11 @@
   /*text-decoration: underline;*/
 }
 
-.markdown-wrapper h1, 
-.markdown-wrapper h2, 
-.markdown-wrapper h3, 
-.markdown-wrapper h4, 
-.markdown-wrapper h5, 
+.markdown-wrapper h1,
+.markdown-wrapper h2,
+.markdown-wrapper h3,
+.markdown-wrapper h4,
+.markdown-wrapper h5,
 .markdown-wrapper h6 {
   margin: 1.3em 0 1em;
   padding: 0;
@@ -168,7 +169,7 @@
   /*background-color: #F8F8F8;*/
 }
 
-.markdown-wrapper table tr th, 
+.markdown-wrapper table tr th,
 .markdown-wrapper table tr td {
   border: 1px solid #CCC;
   text-align: left;
