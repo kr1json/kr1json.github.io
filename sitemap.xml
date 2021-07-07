@@ -46,6 +46,18 @@
     </url>
     
         <url>
+            <loc>https://kr1json.github.io/tags/ssh/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/git/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
             <loc>https://kr1json.github.io/tags/linux/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
@@ -89,18 +101,6 @@
     
         <url>
             <loc>https://kr1json.github.io/tags/java/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/ssh/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/git/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
