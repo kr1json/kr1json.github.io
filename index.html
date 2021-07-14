@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> 망각의 유산</title>
+    <meta name="description" content="">
+    <meta name="author" content="json">
+    <meta name="keywords" content="javascript,linux,node.js,aws" />
+    <meta name="generator" content="haroopress v0.9.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/rss.xml" rel="alternate" title="망각의 유산" type="application/rss+xml">
+
+    <!-- Le styles -->
+    <link rel="canonical" href="https://kr1json.github.io">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/markdown.css" rel="stylesheet">
+    <link href="/css/haroopress.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/code/default.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
+
+    <!-- Le javascript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.jsonp.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/apps/github.js"></script>
+    <script src="/js/apps/twitter.js"></script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+        <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <a class="pull-right" href="/rss.xml"><span class="icon-rss"></span></a>
+          
+            <a class="pull-right" href="http://twitter.com/kr1json" target="_blank"><span class="icon-twitter"></span></a>
+          
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
+              <li>
+                <a href="/slides">Slides</a>
+              </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+<link href="/css/code/default.css" rel="stylesheet">
+
+<div class="container page-main">
+    <div class="row">
+        <div class="span3">
+            
+            <div id="author" class="well">
+                <div>
+                    <h3>About This Site</h3>
+                    <p>
+                        이 사이트는 <a href="http://github.com/rhiokim/haroopress" target="_target">haroopress</a> 엔진으로 생성된 정적 페이지 기반의 웹 사이트입니다.
+                    </p>
+                </div>
+            </div>
+                        <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
+                    
+                    <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
+                    
+                </ul>
+            </div>
+
+                        <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Tags</li>
+                    <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
+                    
+                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
+                    
+                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
+                    
+                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
+                    
+                </ul>
+            </div>
+
+                
+                
+
+            
+<div class="well">
+    <ul class="nav nav-list">
+        <li class="nav-header">Favorites</li>
+        
+        <li>
+            <a href="http://haroopress.github.com" target="_blank">하루프레스 공식 사이트</a>
+        </li>
+        
+        <li>
+            <a href="http://github.com/rhiokim/haroopress/" target="_blank">하루프레스 소스 저장소</a>
+        </li>
+        
+        <li>
+            <a href="http://github.com/haroopress/haroopress-theme" target="_blank">하루프레스 테마 저장소</a>
+        </li>
+        
+        <li>
+            <a href="http://rhio.tistory.com" target="_blank">하루프레스 개발자 블로그</a>
+        </li>
+        
+        <li>
+            <a href="http://nodejs.kr" target="_blank">노드 한국 개발자 커뮤니티</a>
+        </li>
+        
+        <li>
+            <a href="http://frends.kr" target="_blank">프론트 앤드 개발자 커뮤니티</a>
+        </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        <div class="span9">
+            
+            <div class="well">
+                
+                <div class="page-header">
+                    <h1><a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences</a></h1>
+                    <span class="pull-right">Sunday, July 4, 2021 2:48 PM</span>
+                </div>
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="markdown-wrapper">
+                    <p>AWS RDS mysql을 사용하는 java로 만든 서버가 있는데 2년동안 잘 돌아가다가 어느날 갑자기 장애 문자가 왔습니다.</p>
+<p>에러로그를 확인해보니 mysql에 TLS 1.0으로 접속을 못하고 있네요. 갑자기?? 😳</p>
+<h3>에러로그</h3>
+<pre><code class="shell"><span class="hljs-string">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]</span>
+</code></pre>
+<p><em class="label label-important"><strong>구글신</strong></em>을 소환해 봅니다.</p><p><img src="https://miro.medium.com/max/670/1*IoRC6yo1H83JZONHXo29iw.jpeg" alt="GodGoogle"></p>
+<p></p>
+                </div>
+                <hr/>
+                <a class="pull-right" href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences#disqus_thread"></a>
+                <p>
+                    <a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" class="btn btn-info">Read more...</a>
+                </p>
+            </div>
+            
+            <div class="well">
+                
+                <div class="page-header">
+                    <h1><a href="/post/how-to-configure-bind-dns-rpz-response-policy-zones">RPZ(response policy zones)을 통한 DNS WhiteList 관리</a></h1>
+                    <span class="pull-right">Wednesday, January 2, 2019 4:23 PM</span>
+                </div>
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="markdown-wrapper">
+                    <p>특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.</p>
+<p>모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.</p>
+<p>white list에 지정할 URL은 <a href="http://google.com">google.com</a> 같은 public URL이라서 외부 DNS와 같은 응답을 줄 수 있게 <code>recursion yes</code>를 셋팅해야하고</p>
+<p>클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 <code>allow-query { any; }</code>로 설정 해야합니다.</p>
+<p>즉, 외부에서의 <strong>query</strong>와 <strong>recursion</strong> 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.</p>
+
+                </div>
+                <hr/>
+                <a class="pull-right" href="/post/how-to-configure-bind-dns-rpz-response-policy-zones#disqus_thread"></a>
+                <p>
+                    <a href="/post/how-to-configure-bind-dns-rpz-response-policy-zones" class="btn btn-info">Read more...</a>
+                </p>
+            </div>
+            
+            <div class="well">
+                
+                <div class="page-header">
+                    <h1><a href="/post/config-ssh-git">git ssh key 설정</a></h1>
+                    <span class="pull-right">Wednesday, December 12, 2018 8:48 PM</span>
+                </div>
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="markdown-wrapper">
+                    <p>기존에 사용하던 계정과는 다른 계정의 github을 사용해야 할때가 있습니다.</p>
+<p>회사 pc에는 회사 계정이 설정되어 있어 개인 계정을 사용하기 불편한데 이럴때 개인계정에 ssh key 설정을 해놓으면 편리합니다.</p>
+<h3>SSH Key 생성</h3>
+<p>계정별로 파일이름을 지정해주는 것이 좋습니다.</p>
+<pre><code class="bash">$ ssh-keygen
+Generating <span class="hljs-keyword">public</span>/<span class="hljs-keyword">private</span> rsa key pair.
+Enter <span class="hljs-keyword">file</span> in which to save the key (<span class="hljs-regexp">/Users/</span>kr1json<span class="hljs-regexp">/.ssh/i</span>d_rsa): <span class="hljs-regexp">/User/</span>kr1json<span class="hljs-regexp">/.ssh/</span>kr1json.github
+</code></pre>
+
+                </div>
+                <hr/>
+                <a class="pull-right" href="/post/config-ssh-git#disqus_thread"></a>
+                <p>
+                    <a href="/post/config-ssh-git" class="btn btn-info">Read more...</a>
+                </p>
+            </div>
+            
+            <div class="well">
+                
+                <div class="page-header">
+                    <h1><a href="/post/open">열다</a></h1>
+                    <span class="pull-right">Wednesday, December 12, 2018 8:41 PM</span>
+                </div>
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="markdown-wrapper">
+                    <p>이제는 기억하는 것보다 잊혀지는 것들이 더 많으니</p>
+<p>망각의 유산이 될 것을 모아 본다.</p>
+
+                </div>
+                <hr/>
+                <a class="pull-right" href="/post/open#disqus_thread"></a>
+                <p>
+                    <a href="/post/open" class="btn btn-info">Read more...</a>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</div><!-- /container -->
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'kr1json'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+
+
+
+
+
+        <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span12 ">
+                    <div class="well">
+                        <p class="pull-right"><a href="#">Back to top</a></p>
+                            <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
+                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-130874070-1']);
+            _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+
+</body>
+</html>

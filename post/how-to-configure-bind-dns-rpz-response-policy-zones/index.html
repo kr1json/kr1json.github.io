@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RPZ(response policy zones)을 통한 DNS WhiteList 관리 |  망각의 유산</title>
+    <meta name="description" content="DNS WhiteList 설정하는 방법">
+    <meta name="author" content="json">
+    <meta name="keywords" content="javascript,linux,node.js,aws" />
+    <meta name="generator" content="haroopress v0.9.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/rss.xml" rel="alternate" title="망각의 유산" type="application/rss+xml">
+
+    <!-- Le styles -->
+    <link rel="canonical" href="https://kr1json.github.io">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/markdown.css" rel="stylesheet">
+    <link href="/css/haroopress.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/code/default.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
+
+    <!-- Le javascript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.jsonp.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/apps/github.js"></script>
+    <script src="/js/apps/twitter.js"></script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+        <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <a class="pull-right" href="/rss.xml"><span class="icon-rss"></span></a>
+          
+            <a class="pull-right" href="http://twitter.com/kr1json" target="_blank"><span class="icon-twitter"></span></a>
+          
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
+              <li>
+                <a href="/slides">Slides</a>
+              </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+<link href="/css/code/tomorrow-night.css" rel="stylesheet">
+<div class="container page-archive">
+    <div class="row">
+        <div class="span3">
+            <div id="author" class="well">
+                <div>
+                    <h3>About Author</h3>
+                    <ul class="thumbnails">
+                        <li>
+                            <a class="thumbnail">
+                                <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon" />
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>json</strong><br/>
+                        blog: <a href="https://kr1json.github.io" target="_blank">https://kr1json.github.io</a><br/>
+                        twitter: <a href="http://twitter.com/kr1json" target="_blank">@kr1json</a><br/>
+                        github: <a href="https://github.com/kr1json" target="_blank">kr1json</a><br/>
+                        facebook: <a href="https://facebook.com/kr1json" target="_blank">kr1json</a>
+                    </p>
+                    <p>
+                        <a href="https://twitter.com/kr1json" class="twitter-follow-button" data-show-count="true">Follow @kr1json</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </p>
+                    <p>
+                        <p>잊기전에 써봅니다.</p>
+
+                    </p>
+                </div>
+                <div>
+                    <h3>About this Article</h3>
+                    <p>
+                        <h5>Date Released:</h5>
+                        <span>Wednesday, January 2, 2019 4:23 PM</span>
+                    </p>
+                </div>
+            </div>
+                        <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
+                    
+                    <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
+                    
+                </ul>
+            </div>
+
+                        <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Tags</li>
+                    <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
+                    
+                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
+                    
+                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
+                    
+                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
+                    
+                </ul>
+            </div>
+
+            
+<div class="well">
+    <ul class="nav nav-list">
+        <li class="nav-header">Recent Articles</li>
+    
+        <li>
+            <a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" target="_blank">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences
+            <span class="label">json</span></a>
+        </li>
+    
+        <li>
+            <a href="/post/how-to-configure-bind-dns-rpz-response-policy-zones" target="_blank">RPZ(response policy zones)을 통한 DNS WhiteList 관리
+            <span class="label">json</span></a>
+        </li>
+    
+        <li>
+            <a href="/post/config-ssh-git" target="_blank">git ssh key 설정
+            <span class="label">json</span></a>
+        </li>
+    
+        <li>
+            <a href="/post/open" target="_blank">열다
+            <span class="label">json</span></a>
+        </li>
+    
+    </ul>
+</div>
+
+        </div>
+        <div class="span9">
+            <div class="row">
+                <div class="span9">
+                    <div class="well bg">
+                        
+                        <div class="page-header">
+                            <h1>RPZ(response policy zones)을 통한 DNS WhiteList 관리</h1>
+                        </div>
+
+                        <div class="pull-right social-area">
+                                                
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ko" data-text="RPZ(response policy zones)을 통한 DNS WhiteList 관리 -" data-url="https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones" data-via="kr1json">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    
+                                                
+                            <!-- Place this tag where you want the +1 button to render -->
+                            <g:plusone href="/post/how-to-configure-bind-dns-rpz-response-policy-zones" size="medium"></g:plusone>
+
+                            <!-- Place this render call where appropriate -->
+                            <script type="text/javascript">
+                              (function() {
+                                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                po.src = 'https://apis.google.com/js/plusone.js';
+                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                              })();
+                            </script>
+                    
+
+                            
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial" data-href="https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones"></div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1&appId=246177242115486";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+                        </div>
+
+                        <div class="markdown-wrapper">
+                            <p>특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.</p>
+<p>모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.</p>
+<p>white list에 지정할 URL은 <a href="http://google.com">google.com</a> 같은 public URL이라서 외부 DNS와 같은 응답을 줄 수 있게 <code>recursion yes</code>를 셋팅해야하고</p>
+<p>클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 <code>allow-query { any; }</code>로 설정 해야합니다.</p>
+<p>즉, 외부에서의 <strong>query</strong>와 <strong>recursion</strong> 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.</p>
+<h4>/etc/bind/named.conf</h4>
+<pre><code class="bash"><span class="hljs-keyword">options</span> {
+	recursion yes;              # localhost에 설정되지 않은 DNS도 찾아서 응답해줍니다. 
+	allow-query { <span class="hljs-keyword">any</span>; };       # 모든 쿼리를 허용합니다.
+	response-<span class="hljs-keyword">policy</span> {           # RPZ 설정
+		<span class="hljs-type">zone</span> &quot;rpz.whitelist&quot;;   
+		<span class="hljs-type">zone</span> &quot;rpz&quot;;
+	};
+};
+
+<span class="hljs-type">zone</span> &quot;rpz.whitelist&quot; {
+    <span class="hljs-keyword">type</span> master;
+    file &quot;/etc/bind/db.rpz.whitelist&quot;;
+    allow-query { localhost; };
+    allow-transfer { <span class="hljs-keyword">none</span>; };
+};
+
+<span class="hljs-type">zone</span> &quot;rpz&quot; {
+    <span class="hljs-keyword">type</span> master;
+    file &quot;/etc/bind/db.rpz&quot;;
+    allow-query { localhost; };
+    allow-transfer { <span class="hljs-keyword">none</span>; };
+};
+</code></pre>
+<h4>/etc/bind/db.rpz.whitelist</h4>
+<pre><code class="bash"><span class="hljs-meta">$TTL</span> <span class="hljs-number">604800</span>
+@            <span class="hljs-keyword">IN</span>    <span class="hljs-keyword">SOA</span>  localhost. root.localhost.  (
+                      <span class="hljs-number">2018122401</span>   <span class="hljs-comment">; serial</span>
+                      <span class="hljs-number">360</span>  <span class="hljs-comment">; refresh</span>
+                      <span class="hljs-number">360</span>  <span class="hljs-comment">; retry</span>
+                      <span class="hljs-number">1</span>W  <span class="hljs-comment">; expiry</span>
+                      <span class="hljs-number">3</span>H) <span class="hljs-comment">; minimum</span>
+
+                      <span class="hljs-keyword">IN</span>     <span class="hljs-keyword">NS</span>      localhost.
+
+google.com                 <span class="hljs-keyword">CNAME</span>   rpz-passthru. # 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  
+*.google.com               <span class="hljs-keyword">CNAME</span>   rpz-passthru.
+</code></pre>
+<h4>/etc/bind/db.rpz</h4>
+<pre><code class="bash"><span class="hljs-meta">$TTL</span> <span class="hljs-number">604800</span>
+@            <span class="hljs-keyword">IN</span>    <span class="hljs-keyword">SOA</span>  localhost. root.localhost.  (
+                     <span class="hljs-number">2018122401</span>   <span class="hljs-comment">; serial</span>
+                     <span class="hljs-number">360</span>  <span class="hljs-comment">; refresh</span>
+                     <span class="hljs-number">1</span>H  <span class="hljs-comment">; retry</span>
+                     <span class="hljs-number">1</span>W  <span class="hljs-comment">; expiry</span>
+                     <span class="hljs-number">3</span>H) <span class="hljs-comment">; minimum</span>
+
+             <span class="hljs-keyword">IN</span>      <span class="hljs-keyword">NS</span>    localhost.
+
+*   <span class="hljs-keyword">A</span>   <span class="hljs-number">1.1.1.1</span> # 나의 DNS Server IP
+</code></pre>
+<h5>참조</h5>
+<ul>
+<li><a href="https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html">https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html</a></li>
+<li><a href="https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf">https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf</a></li>
+</ul>
+
+                        </div>
+                        <hr />
+                        <div>
+                            <strong>tags</strong> :
+                            
+                                <a href="/tags/linux">linux</a>&nbsp;
+                            
+                                <a href="/tags/bind">bind</a>&nbsp;
+                            
+                                <a href="/tags/dns">dns</a>&nbsp;
+                            
+                                <a href="/tags/server">server</a>&nbsp;
+                            
+                        </div>
+                        <hr />
+                                            
+                        <div class="row-fluid">
+                            
+                            <div class="pull-right">
+                                <a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" class="btn btn-info">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences <i class="icon-white icon-chevron-right"></i></a>
+                            </div>
+                            
+
+                            
+                            <div class="pull-left">
+                                <a href="/post/config-ssh-git" class="btn btn-info"><i class="icon-white icon-chevron-left"></i> git ssh key 설정</a>
+                            </div>
+                            
+                        </div>
+                    
+
+                        
+    <div class="row-fluid">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'kr1json'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+
+
+        <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span12 ">
+                    <div class="well">
+                        <p class="pull-right"><a href="#">Back to top</a></p>
+                            <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
+                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-130874070-1']);
+            _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+
+</body>
+</html>
