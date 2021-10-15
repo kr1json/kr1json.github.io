@@ -25,7 +25,7 @@
     <link href="/css/markdown.css" rel="stylesheet">
     <link href="/css/haroopress.css" rel="stylesheet">
     <link href="/css/theme.css" rel="stylesheet">
-    <link href="/css/code/default.css" rel="stylesheet">
+    <link href="/css/code/atom-one-dark.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -74,7 +74,10 @@
     </div>
 
     
-<link href="/css/code/tomorrow-night.css" rel="stylesheet">
+<!--<link href="/css/code/atom-one-dark.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -117,6 +120,8 @@
                     <li class="nav-header">Categories</li>
                     <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
                     
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
+                    
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
@@ -129,9 +134,31 @@
                     <li class="nav-header">Tags</li>
                     <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
                     
-                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
-                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
+                    
+                    <li><a href="/tags/opensearch"><i class="icon-book"></i> opensearch</a></li>
+                    
+                    <li><a href="/tags/elasticsearch"><i class="icon-book"></i> elasticsearch</a></li>
+                    
+                    <li><a href="/tags/iam"><i class="icon-book"></i> iam</a></li>
+                    
+                    <li><a href="/tags/snapshot"><i class="icon-book"></i> snapshot</a></li>
+                    
+                    <li><a href="/tags/backup"><i class="icon-book"></i> backup</a></li>
+                    
+                    <li><a href="/tags/restore"><i class="icon-book"></i> restore</a></li>
+                    
+                    <li><a href="/tags/백업"><i class="icon-book"></i> 백업</a></li>
+                    
+                    <li><a href="/tags/복원"><i class="icon-book"></i> 복원</a></li>
+                    
+                    <li><a href="/tags/스냅샷"><i class="icon-book"></i> 스냅샷</a></li>
+                    
+                    <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
+                    
+                    <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
                     
                     <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
                     
@@ -140,6 +167,10 @@
                     <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
                     
                     <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     
@@ -156,6 +187,11 @@
 <div class="well">
     <ul class="nav nav-list">
         <li class="nav-header">Recent Articles</li>
+    
+        <li>
+            <a href="/post/how-to-save-opensearch-snapshot-to-s3" target="_blank">OpenSearch Service 스냅샷 S3 백업 복원하는 방법
+            <span class="label">json</span></a>
+        </li>
     
         <li>
             <a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" target="_blank">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences
@@ -226,7 +262,7 @@
                             <p>AWS RDS mysql을 사용하는 java로 만든 서버가 있는데 2년동안 잘 돌아가다가 어느날 갑자기 장애 문자가 왔습니다.</p>
 <p>에러로그를 확인해보니 mysql에 TLS 1.0으로 접속을 못하고 있네요. 갑자기?? 😳</p>
 <h3>에러로그</h3>
-<pre><code class="shell"><span class="hljs-string">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]</span>
+<pre><code class="shell">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]
 </code></pre>
 <p><em class="label label-important"><strong>구글신</strong></em>을 소환해 봅니다.</p><p><img src="https://miro.medium.com/max/670/1*IoRC6yo1H83JZONHXo29iw.jpeg" alt="GodGoogle"></p>
 <p>보안 때문에 클라이언트에서 <code>TLS 1.0</code>, <code>TLS 1.1</code> 을 지원하지 비활성화 했다는군요.</p>
@@ -235,14 +271,14 @@
 <li>참조 <a href="https://aws.amazon.com/ko/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/">https://aws.amazon.com/ko/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/</a></li>
 </ul>
 <h3>수정 전</h3>
-<pre><code class="shell"><span class="hljs-attribute">jdk</span>.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.<span class="hljs-number">1</span>, RC4, DES, MD5withRSA, \
-    <span class="hljs-attribute">DH</span> keySize &lt; <span class="hljs-number">1024</span>, EC keySize &lt; <span class="hljs-number">224</span>, <span class="hljs-number">3</span>DES_EDE_CBC, anon, NULL, \
-    <span class="hljs-attribute">include</span> jdk.disabled.namedCurves
+<pre><code class="shell">jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+    DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+    include jdk.disabled.namedCurves
 </code></pre>
 <h3>수정 후</h3>
-<pre><code class="shell"><span class="hljs-attribute">jdk</span>.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
-    <span class="hljs-attribute">DH</span> keySize &lt; <span class="hljs-number">1024</span>, EC keySize &lt; <span class="hljs-number">224</span>, <span class="hljs-number">3</span>DES_EDE_CBC, anon, NULL, \
-    <span class="hljs-attribute">include</span> jdk.disabled.namedCurves
+<pre><code class="shell">jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
+    DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+    include jdk.disabled.namedCurves
 </code></pre>
 <p>근데 왜 잘되다가 갑자기 안되었을까요? 일단 현재 장애 중이니 조치 먼저 합니다.</p>
 <h3>조치 방법</h3>
@@ -251,17 +287,17 @@
 </ol>
 <pre><code class="shell"> # java home을 알고있으면 바로 가면 됩니다. 하지만 java home 이 어딘지 모릅니다 ㅠㅠ
  $ which java
- <span class="hljs-regexp">/usr/</span>bin/java
+ /usr/bin/java
  
- $ ls -al <span class="hljs-regexp">/usr/</span>bin/java
- lrwxrwxrwx <span class="hljs-number">1</span> root root <span class="hljs-number">22</span> Dec <span class="hljs-number">13</span>  <span class="hljs-number">2017</span> <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/java -&gt; /</span>etc<span class="hljs-regexp">/alternatives/</span>java
+ $ ls -al /usr/bin/java
+ lrwxrwxrwx 1 root root 22 Dec 13  2017 /usr/bin/java -> /etc/alternatives/java
  
- $ ls -al <span class="hljs-regexp">/etc/</span>alternatives/java
- lrwxrwxrwx <span class="hljs-number">1</span> root root <span class="hljs-number">46</span> Dec <span class="hljs-number">13</span>  <span class="hljs-number">2017</span> <span class="hljs-regexp">/etc/</span>alternatives<span class="hljs-regexp">/java -&gt; /u</span>sr<span class="hljs-regexp">/lib/</span>jvm<span class="hljs-regexp">/java-8-openjdk-amd64/</span>jre<span class="hljs-regexp">/bin/</span>java
+ $ ls -al /etc/alternatives/java
+ lrwxrwxrwx 1 root root 46 Dec 13  2017 /etc/alternatives/java -> /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
  
- $ ls -al <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64<span class="hljs-regexp">/jre/</span>bin/java
- # 링크가 아닌 파일인거 보니 <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64 여기가 java home 인것 같네요 
- -rwxr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">6464</span> Apr <span class="hljs-number">21</span> <span class="hljs-number">15</span>:<span class="hljs-number">31</span> <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/jvm/</span>java-<span class="hljs-number">8</span>-openjdk-amd64<span class="hljs-regexp">/jre/</span>bin/java 
+ $ ls -al /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+ # 링크가 아닌 파일인거 보니 /usr/lib/jvm/java-8-openjdk-amd64 여기가 java home 인것 같네요 
+ -rwxr-xr-x 1 root root 6464 Apr 21 15:31 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java 
 </code></pre>
 <ol start="2">
 <li>
@@ -292,6 +328,10 @@
                         <hr />
                                             
                         <div class="row-fluid">
+                            
+                            <div class="pull-right">
+                                <a href="/post/how-to-save-opensearch-snapshot-to-s3" class="btn btn-info">OpenSearch Service 스냅샷 S3 백업 복원하는 방법 <i class="icon-white icon-chevron-right"></i></a>
+                            </div>
                             
 
                             

@@ -25,7 +25,7 @@
     <link href="/css/markdown.css" rel="stylesheet">
     <link href="/css/haroopress.css" rel="stylesheet">
     <link href="/css/theme.css" rel="stylesheet">
-    <link href="/css/code/default.css" rel="stylesheet">
+    <link href="/css/code/atom-one-dark.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -74,7 +74,10 @@
     </div>
 
     
-<link href="/css/code/default.css" rel="stylesheet">
+<!--<link href="/css/code/atom-one-dark.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -117,6 +120,8 @@
                     <li class="nav-header">Categories</li>
                     <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
                     
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
+                    
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
@@ -129,9 +134,31 @@
                     <li class="nav-header">Tags</li>
                     <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
                     
-                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
-                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
+                    
+                    <li><a href="/tags/opensearch"><i class="icon-book"></i> opensearch</a></li>
+                    
+                    <li><a href="/tags/elasticsearch"><i class="icon-book"></i> elasticsearch</a></li>
+                    
+                    <li><a href="/tags/iam"><i class="icon-book"></i> iam</a></li>
+                    
+                    <li><a href="/tags/snapshot"><i class="icon-book"></i> snapshot</a></li>
+                    
+                    <li><a href="/tags/backup"><i class="icon-book"></i> backup</a></li>
+                    
+                    <li><a href="/tags/restore"><i class="icon-book"></i> restore</a></li>
+                    
+                    <li><a href="/tags/백업"><i class="icon-book"></i> 백업</a></li>
+                    
+                    <li><a href="/tags/복원"><i class="icon-book"></i> 복원</a></li>
+                    
+                    <li><a href="/tags/스냅샷"><i class="icon-book"></i> 스냅샷</a></li>
+                    
+                    <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
+                    
+                    <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
                     
                     <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
                     
@@ -140,6 +167,10 @@
                     <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
                     
                     <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     
@@ -156,6 +187,11 @@
 <div class="well">
     <ul class="nav nav-list">
         <li class="nav-header">Recent Articles</li>
+    
+        <li>
+            <a href="/post/how-to-save-opensearch-snapshot-to-s3" target="_blank">OpenSearch Service 스냅샷 S3 백업 복원하는 방법
+            <span class="label">json</span></a>
+        </li>
     
         <li>
             <a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences" target="_blank">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences

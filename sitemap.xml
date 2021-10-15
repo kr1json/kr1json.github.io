@@ -4,6 +4,15 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://kr1json.github.io/post/how-to-save-opensearch-snapshot-to-s3/</loc>
+        <lastmod>
+            2021-10-15T07:33:51.907Z
+        </lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    
+    <url>
         <loc>https://kr1json.github.io/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences/</loc>
         <lastmod>
             2021-07-07T01:29:27.219Z
@@ -46,13 +55,79 @@
     </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/ssh/</loc>
+            <loc>https://kr1json.github.io/tags/aws/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
         <url>
-            <loc>https://kr1json.github.io/tags/git/</loc>
+            <loc>https://kr1json.github.io/tags/s3/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/opensearch/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/elasticsearch/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/iam/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/snapshot/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/backup/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/restore/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/백업/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/복원/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/스냅샷/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/엘라스틱/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/nodejs/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
@@ -77,6 +152,18 @@
     
         <url>
             <loc>https://kr1json.github.io/tags/server/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/ssh/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/git/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>

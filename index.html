@@ -25,7 +25,7 @@
     <link href="/css/markdown.css" rel="stylesheet">
     <link href="/css/haroopress.css" rel="stylesheet">
     <link href="/css/theme.css" rel="stylesheet">
-    <link href="/css/code/default.css" rel="stylesheet">
+    <link href="/css/code/atom-one-dark.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -74,7 +74,7 @@
     </div>
 
     
-<link href="/css/code/default.css" rel="stylesheet">
+<link href="/css/code/atom-one-dark.css" rel="stylesheet">
 
 <div class="container page-main">
     <div class="row">
@@ -93,6 +93,8 @@
                     <li class="nav-header">Categories</li>
                     <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
                     
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
+                    
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
@@ -105,9 +107,31 @@
                     <li class="nav-header">Tags</li>
                     <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
                     
-                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
-                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
+                    
+                    <li><a href="/tags/opensearch"><i class="icon-book"></i> opensearch</a></li>
+                    
+                    <li><a href="/tags/elasticsearch"><i class="icon-book"></i> elasticsearch</a></li>
+                    
+                    <li><a href="/tags/iam"><i class="icon-book"></i> iam</a></li>
+                    
+                    <li><a href="/tags/snapshot"><i class="icon-book"></i> snapshot</a></li>
+                    
+                    <li><a href="/tags/backup"><i class="icon-book"></i> backup</a></li>
+                    
+                    <li><a href="/tags/restore"><i class="icon-book"></i> restore</a></li>
+                    
+                    <li><a href="/tags/백업"><i class="icon-book"></i> 백업</a></li>
+                    
+                    <li><a href="/tags/복원"><i class="icon-book"></i> 복원</a></li>
+                    
+                    <li><a href="/tags/스냅샷"><i class="icon-book"></i> 스냅샷</a></li>
+                    
+                    <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
+                    
+                    <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
                     
                     <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
                     
@@ -116,6 +140,10 @@
                     <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
                     
                     <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     
@@ -170,6 +198,36 @@
             <div class="well">
                 
                 <div class="page-header">
+                    <h1><a href="/post/how-to-save-opensearch-snapshot-to-s3">OpenSearch Service 스냅샷 S3 백업 복원하는 방법</a></h1>
+                    <span class="pull-right">Friday, October 15, 2021 4:33 PM</span>
+                </div>
+                <div class="pull-right">
+                    <ul class="thumbnails">
+                        <li class="thumbnail">
+                            <img src="https://www.gravatar.com/avatar/3826b2931905a8196de681e6612cf5c2?r=pg&amp;s=128.jpg&amp;d=identicon"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="markdown-wrapper">
+                    <p><img src="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2021/09/04/2021-opensearch-service-1.png" alt="OpenSearch"></p>
+<p>운영하던 서비스의 데이터를 AWS의 OpenSearch Service에 저장하고 있었는데 상당기간 동안 운영하며</p>
+<p>정보수집의 목적을 이루어 값비싼 OpenSearch Service는 삭제하고 데이터만 백업하기로 했습니다.</p>
+<blockquote>
+<p>OpenSearch Service?<br>
+AWS의 ElasticSearch Service의 이름이 OpenSearch Searvice로 변경되었습니다.</p>
+</blockquote>
+
+                </div>
+                <hr/>
+                <a class="pull-right" href="/post/how-to-save-opensearch-snapshot-to-s3#disqus_thread"></a>
+                <p>
+                    <a href="/post/how-to-save-opensearch-snapshot-to-s3" class="btn btn-info">Read more...</a>
+                </p>
+            </div>
+            
+            <div class="well">
+                
+                <div class="page-header">
                     <h1><a href="/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences">JAVA TLS 접속 에러 - The server selected protocol version TLS is not accepted by client preferences</a></h1>
                     <span class="pull-right">Sunday, July 4, 2021 2:48 PM</span>
                 </div>
@@ -184,7 +242,7 @@
                     <p>AWS RDS mysql을 사용하는 java로 만든 서버가 있는데 2년동안 잘 돌아가다가 어느날 갑자기 장애 문자가 왔습니다.</p>
 <p>에러로그를 확인해보니 mysql에 TLS 1.0으로 접속을 못하고 있네요. 갑자기?? 😳</p>
 <h3>에러로그</h3>
-<pre><code class="shell"><span class="hljs-string">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]</span>
+<pre><code class="shell">[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]
 </code></pre>
 <p><em class="label label-important"><strong>구글신</strong></em>을 소환해 봅니다.</p><p><img src="https://miro.medium.com/max/670/1*IoRC6yo1H83JZONHXo29iw.jpeg" alt="GodGoogle"></p>
 <p></p>
@@ -243,8 +301,8 @@
 <h3>SSH Key 생성</h3>
 <p>계정별로 파일이름을 지정해주는 것이 좋습니다.</p>
 <pre><code class="bash">$ ssh-keygen
-Generating <span class="hljs-keyword">public</span>/<span class="hljs-keyword">private</span> rsa key pair.
-Enter <span class="hljs-keyword">file</span> in which to save the key (<span class="hljs-regexp">/Users/</span>kr1json<span class="hljs-regexp">/.ssh/i</span>d_rsa): <span class="hljs-regexp">/User/</span>kr1json<span class="hljs-regexp">/.ssh/</span>kr1json.github
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/kr1json/.ssh/id_rsa): /User/kr1json/.ssh/kr1json.github
 </code></pre>
 
                 </div>
