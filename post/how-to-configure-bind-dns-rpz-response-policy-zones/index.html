@@ -78,6 +78,102 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script type="application/ld+json">
+
+{
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "dependencies": "",
+    "proficiencyLevel": "Expert",
+    "articleBody": "특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.
+
+모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.
+
+white list에 지정할 URL은 google.com 같은 public URL이라서 외부 DNS와 같은 응답을 줄 수 있게 `recursion yes`를 셋팅해야하고
+
+클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 `allow-query { any; }`로 설정 해야합니다.
+
+즉, 외부에서의 **query**와 **recursion** 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.
+
+
+#### /etc/bind/named.conf
+ 
+```bash
+options {
+	recursion yes;              # localhost에 설정되지 않은 DNS도 찾아서 응답해줍니다. 
+	allow-query { any; };       # 모든 쿼리를 허용합니다.
+	response-policy {           # RPZ 설정
+		zone &#34;rpz.whitelist&#34;;   
+		zone &#34;rpz&#34;;
+	};
+};
+
+zone &#34;rpz.whitelist&#34; {
+    type master;
+    file &#34;/etc/bind/db.rpz.whitelist&#34;;
+    allow-query { localhost; };
+    allow-transfer { none; };
+};
+
+zone &#34;rpz&#34; {
+    type master;
+    file &#34;/etc/bind/db.rpz&#34;;
+    allow-query { localhost; };
+    allow-transfer { none; };
+};
+```
+
+
+#### /etc/bind/db.rpz.whitelist
+
+```bash
+$TTL 604800
+@            IN    SOA  localhost. root.localhost.  (
+                      2018122401   ; serial
+                      360  ; refresh
+                      360  ; retry
+                      1W  ; expiry
+                      3H) ; minimum
+
+                      IN     NS      localhost.
+
+google.com                 CNAME   rpz-passthru. # 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  
+*.google.com               CNAME   rpz-passthru.
+```
+
+
+#### /etc/bind/db.rpz
+
+```bash
+$TTL 604800
+@            IN    SOA  localhost. root.localhost.  (
+                     2018122401   ; serial
+                     360  ; refresh
+                     1H  ; retry
+                     1W  ; expiry
+                     3H) ; minimum
+
+             IN      NS    localhost.
+
+*   A   1.1.1.1 # 나의 DNS Server IP
+```
+
+##### 참조
+
+* https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html
+* https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf
+",
+    "articleSection": "Programmer",
+    "about": "DNS WhiteList 설정하는 방법",
+    "author": "json",
+    "dateCreated": "2019-01-02T07:23:39.448Z",
+    "dateModified": "2021-10-15T13:13:51.907Z",
+    "datePublished": "Wednesday, January 2, 2019 4:23 PM",
+    "keywords": "linux, bind, dns, server",
+    "url": "https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones/"
+}
+
+</script>
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -138,6 +234,14 @@
                     
                     <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
                     <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
@@ -163,14 +267,6 @@
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
-                    
-                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
-                    
-                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
-                    
-                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     

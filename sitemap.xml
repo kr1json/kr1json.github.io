@@ -6,7 +6,7 @@
     <url>
         <loc>https://kr1json.github.io/post/how-to-save-opensearch-snapshot-to-s3/</loc>
         <lastmod>
-            2021-10-15T07:33:51.907Z
+            2021-10-15T13:13:51.907Z
         </lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
@@ -15,7 +15,7 @@
     <url>
         <loc>https://kr1json.github.io/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences/</loc>
         <lastmod>
-            2021-07-07T01:29:27.219Z
+            2021-10-15T13:13:51.907Z
         </lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
@@ -24,7 +24,7 @@
     <url>
         <loc>https://kr1json.github.io/post/how-to-configure-bind-dns-rpz-response-policy-zones/</loc>
         <lastmod>
-            2019-01-02T07:23:39.448Z
+            2021-10-15T13:13:51.907Z
         </lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
@@ -33,7 +33,7 @@
     <url>
         <loc>https://kr1json.github.io/post/config-ssh-git/</loc>
         <lastmod>
-            2018-12-12T11:48:00.000Z
+            2021-10-15T13:13:51.907Z
         </lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
@@ -62,6 +62,30 @@
     
         <url>
             <loc>https://kr1json.github.io/tags/git/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/linux/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/bind/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/dns/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
+        <url>
+            <loc>https://kr1json.github.io/tags/server/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
@@ -140,30 +164,6 @@
     
         <url>
             <loc>https://kr1json.github.io/tags/nodejs/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/linux/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/bind/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/dns/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    
-        <url>
-            <loc>https://kr1json.github.io/tags/server/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>

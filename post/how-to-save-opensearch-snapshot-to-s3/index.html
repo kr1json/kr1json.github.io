@@ -78,6 +78,216 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script type="application/ld+json">
+
+{
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "dependencies": "",
+    "proficiencyLevel": "Beginner",
+    "articleBody": "
+![OpenSearch](https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2021/09/04/2021-opensearch-service-1.png)
+
+운영하던 서비스의 데이터를 AWS의 OpenSearch Service에 저장하고 있었는데 상당기간 동안 운영하며 
+
+정보수집의 목적을 이루어 값비싼 OpenSearch Service는 삭제하고 데이터만 백업하기로 했습니다.
+
+
+&gt; OpenSearch Service?
+&gt;  AWS의 ElasticSearch Service의 이름이 OpenSearch Searvice로 변경되었습니다.
+
+
+
+작업은 아래 순서로 이루어 집니다.
+
+사용자는 이미 존재하는걸 사용하고 S3와 Role만 새로 만들었습니다.
+
+아시다시피 OpenSearch는 REST API를 사용하는데 스냅샷 저장공간 만드는 REST는 AWS 인증이 필요하여 POSTMAN이나 파이썬같은걸 사용합니다.
+
+저는 익숙한 Nodejs를 사용하였습니다.
+
+
+### 사전작업
+   1. 스냅샷 저장할 S3 버킷 만들기
+   2. IAM 사용자 만들기 ( AWS 프로그래밍 방식 엑세스 가능 )
+   3. IAM Role 만들기 및 권한 추가
+
+### 실제작업 
+   1. OpenSearch에 스냅샷 저장공간 만들기 ( nodejs 사용 )
+   2. 스냅샷 저장
+
+
+
+# 사전작업
+***
+
+### IAM Role 만들기
+* Role 이름 : TheSnapshotRole
+* 역할의 권한에 적용할 정책 : 생성한 S3의 권한을 추가합니다.
+```json
+{
+  &#34;Version&#34;: &#34;2012-10-17&#34;,
+  &#34;Statement&#34;: [
+    {
+      &#34;Action&#34;: [
+        &#34;s3:ListBucket&#34;
+      ],
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Resource&#34;: [
+        &#34;arn:aws:s3:::s3-bucket-name&#34;
+      ]
+    },
+    {
+      &#34;Action&#34;: [
+        &#34;s3:GetObject&#34;,
+        &#34;s3:PutObject&#34;,
+        &#34;s3:DeleteObject&#34;
+      ],
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Resource&#34;: [
+        &#34;arn:aws:s3:::s3-bucket-name/*&#34;
+      ]
+    }
+  ]
+}
+```
+
+* 권한 추가 : 스냅샷 저장소를 만들려면 OpenSearch에 `TheSnapshotRole` 역할을 전달하고 ESHttpPut 권한이 있어야 합니다.
+```json
+{
+  &#34;Version&#34;: &#34;2012-10-17&#34;,
+  &#34;Statement&#34;: [
+    {
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Action&#34;: &#34;iam:PassRole&#34;,
+      &#34;Resource&#34;: &#34;arn:aws:iam::123456789012:role/TheSnapshotRole&#34;
+    },
+    {
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Action&#34;: &#34;es:ESHttpPut&#34;,
+      &#34;Resource&#34;: &#34;arn:aws:es:region:123456789012:domain/domain-name/*&#34;
+    }
+  ]
+}
+```
+
+
+
+
+# 실제 작업
+***
+
+OpenSearch Service에 스냅샷 레포지토리를 등록하고 스냅샷을 생성합니다.
+
+### 스냅샷 레포지토리 등록
+원래는 아래와 같은 REST API를 호출하면 되는데 AWS 인증을 해야해서 curl로 작업이 안됩니다.
+```http request
+PUT domain-endpoint/_snapshot/my-snapshot-repo-name
+{
+  &#34;type&#34;: &#34;s3&#34;,
+  &#34;settings&#34;: {
+    &#34;bucket&#34;: &#34;s3-bucket-name&#34;,
+    &#34;region&#34;: &#34;region&#34;,
+    &#34;role_arn&#34;: &#34;arn:aws:iam::123456789012:role/TheSnapshotRole&#34;
+  }
+}
+```
+
+그래서 python이나 postman을 사용하는데 저는 nodejs 를 사용했습니다.
+```javascript
+/**
+ * Created by kr1json
+ * Date: 2021/10/12
+ * Time: 4:26 오후
+ */
+const https = require(&#39;https&#39;);
+const aws4 = require(&#39;aws4&#39;);
+
+function request(opts) {
+  https.request(opts, function (res) {
+    res.pipe(process.stdout);
+  }).end(opts.body || &#39;&#39;);
+}
+
+
+request(aws4.sign({
+    service: &#39;es&#39;,
+    host: &#39;domain-endpost&#39;,
+    region: &#39;ap-northeast-2&#39;,
+    method: &#39;PUT&#39;,
+    path: &#39;/_snapshot/S3-bucket-name&#39;,
+    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+    body: JSON.stringify({
+      &#39;type&#39;: &#39;s3&#39;,
+      &#39;settings&#39;: {
+        &#39;bucket&#39;: &#39;S3-bucket-name&#39;,
+        &#39;region&#39;: &#39;ap-northeast-2&#39;,
+        &#39;role_arn&#39;: &#39;arn:aws:iam::123456789012:role/TheSnapshotRole&#39;
+      }
+    })
+  },
+  { accessKeyId: &#39;accessKeyId&#39;, secretAccessKey: &#39;secretAccessKey&#39; }
+));
+```
+
+성공적으로 등록하면 아래와 같이 응답이 옵니다.
+```json
+{
+  &#34;acknowledged&#34;: true
+}
+```
+실패 했다면 ***warning 권한*** 설정 문제일 가능성이 제일 큽니다.
+
+
+### 레포지토리 등록 확인
+```http request
+curl -XGET &#39;domain-endpoint/_snapshot&#39;
+```
+
+
+### 스냅샷 생성
+이제 진짜 스냅샷을 생성합니다.
+```http request
+curl -XPUT &#39;domain-endpoint/_snapshot/repository-name/snapshot-name&#39;
+```
+
+
+### 스냅샷 확인
+```http request
+curl -XGET &#39;domain-endpoint/_snapshot/repository-name/_all?pretty&#39;
+```
+
+
+S3에도 제대로 저장이 되었는지 확인해봅니다.
+![snapshotS3](@img/snapshots3.png)
+
+
+# 복구 
+***
+
+복구는 만들어 놓은 Role이 있기 때문에 금방합니다.
+1. OpenSearch Service에 도메인을 만들기
+2. 레포지토리 등록
+3. OpenSearch 복구 요청
+```http request
+curl -XPOST &#39;domain-endpoint/_snapshot/repository-name/snapshot-name/_restore&#39;
+```
+
+
+* 출처
+AWS OpensSearch 문서 : [Creating index snapshots in Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html)
+",
+    "articleSection": "Programmer",
+    "about": "OpenSearch Service (elasticsearch) 스냅샷을 S3에 백업하고 복원하는 방법 nodejs 사용",
+    "author": "json",
+    "dateCreated": "2021-10-15T07:33:51.907Z",
+    "dateModified": "2021-10-15T13:13:51.907Z",
+    "datePublished": "Friday, October 15, 2021 4:33 PM",
+    "keywords": "aws, s3, opensearch, elasticsearch, iam, snapshot, backup, restore, 백업, 복원, 스냅샷, 엘라스틱, nodejs",
+    "url": "https://kr1json.github.io/post/how-to-save-opensearch-snapshot-to-s3"
+}
+
+</script>
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -138,6 +348,14 @@
                     
                     <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
                     <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
@@ -163,14 +381,6 @@
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
-                    
-                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
-                    
-                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
-                    
-                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     

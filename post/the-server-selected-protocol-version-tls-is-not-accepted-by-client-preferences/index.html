@@ -78,6 +78,92 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/atom-one-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script type="application/ld+json">
+
+{
+    "@context": "http://schema.org",
+    "@type": "TechArticle",
+    "dependencies": "",
+    "proficiencyLevel": "Beginner",
+    "articleBody": "AWS RDS mysql을 사용하는 java로 만든 서버가 있는데 2년동안 잘 돌아가다가 어느날 갑자기 장애 문자가 왔습니다.
+
+에러로그를 확인해보니 mysql에 TLS 1.0으로 접속을 못하고 있네요. 갑자기?? 😳
+
+### 에러로그
+```shell
+[[IOException-Socket send error: The server selected protocol version TLS10 is not accepted by client preferences [TLS12]]
+```
+
+***important 구글신***을 소환해 봅니다.
+
+![GodGoogle](https://miro.medium.com/max/670/1*IoRC6yo1H83JZONHXo29iw.jpeg)
+
+보안 때문에 클라이언트에서 `TLS 1.0`, `TLS 1.1` 을 지원하지 비활성화 했다는군요.
+
+`$JAVA_HOME/jre/lib/security/java.security` 파일을 아래와 같이 수정하면 됩니다.
+
+* 참조 https://aws.amazon.com/ko/blogs/opensource/tls-1-0-1-1-changes-in-openjdk-and-amazon-corretto/
+
+### 수정 전
+```shell
+jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+    DH keySize &lt; 1024, EC keySize &lt; 224, 3DES_EDE_CBC, anon, NULL, \
+    include jdk.disabled.namedCurves
+```
+
+### 수정 후
+```shell
+jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
+    DH keySize &lt; 1024, EC keySize &lt; 224, 3DES_EDE_CBC, anon, NULL, \
+    include jdk.disabled.namedCurves
+```
+
+근데 왜 잘되다가 갑자기 안되었을까요? 일단 현재 장애 중이니 조치 먼저 합니다.
+
+
+### 조치 방법
+1. `$JAVA_HOME/jre/lib/security/java.security` 파일을 찾습니다.
+
+```shell
+ # java home을 알고있으면 바로 가면 됩니다. 하지만 java home 이 어딘지 모릅니다 ㅠㅠ
+ $ which java
+ /usr/bin/java
+ 
+ $ ls -al /usr/bin/java
+ lrwxrwxrwx 1 root root 22 Dec 13  2017 /usr/bin/java -&gt; /etc/alternatives/java
+ 
+ $ ls -al /etc/alternatives/java
+ lrwxrwxrwx 1 root root 46 Dec 13  2017 /etc/alternatives/java -&gt; /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+ 
+ $ ls -al /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+ # 링크가 아닌 파일인거 보니 /usr/lib/jvm/java-8-openjdk-amd64 여기가 java home 인것 같네요 
+ -rwxr-xr-x 1 root root 6464 Apr 21 15:31 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java 
+ ```
+
+2. vi /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+
+3. 프로세스 재 실행 
+
+
+이제 제대로 동작이 됩니다.
+
+그럼 갑자기 안 된 원인을 찾아 볼까요?
+
+
+제대로 되는데 굳이... 담배나 한대 피러 갑니다.
+
+",
+    "articleSection": "Programmer",
+    "about": "How to enable TLS 1.0 in Java client. JAVA TLS 1.0 활성화 방법",
+    "author": "json",
+    "dateCreated": "2021-07-02T05:48:27.219Z",
+    "dateModified": "2021-10-15T13:13:51.907Z",
+    "datePublished": "Sunday, July 4, 2021 2:48 PM",
+    "keywords": "tls, mysql, ssl, java",
+    "url": "https://kr1json.github.io/post/the-server-selected-protocol-version-tls-is-not-accepted-by-client-preferences/"
+}
+
+</script>
 <div class="container page-archive">
     <div class="row">
         <div class="span3">
@@ -138,6 +224,14 @@
                     
                     <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
                     
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
                     <li><a href="/tags/s3"><i class="icon-book"></i> s3</a></li>
@@ -163,14 +257,6 @@
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
-                    
-                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
-                    
-                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
-                    
-                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
                     
                     <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
                     
