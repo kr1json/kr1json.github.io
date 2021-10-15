@@ -120,11 +120,11 @@
                     <li class="nav-header">Categories</li>
                     <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
                     
-                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
-                    
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
+                    
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
                     
                 </ul>
             </div>
@@ -133,6 +133,26 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Tags</li>
                     <li class=""><a href="/tags"><i class="icon-home"></i> Home</a></li>
+                    
+                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
+                    
+                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
+                    
+                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
+                    
+                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
+                    
+                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
+                    
+                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
+                    
+                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
+                    
+                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
+                    
+                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
@@ -159,26 +179,6 @@
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/linux"><i class="icon-book"></i> linux</a></li>
-                    
-                    <li><a href="/tags/bind"><i class="icon-book"></i> bind</a></li>
-                    
-                    <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
-                    
-                    <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
-                    
-                    <li><a href="/tags/ssh"><i class="icon-book"></i> ssh</a></li>
-                    
-                    <li><a href="/tags/git"><i class="icon-book"></i> git</a></li>
-                    
-                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
-                    
-                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
-                    
-                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
-                    
-                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                 </ul>
             </div>
@@ -309,6 +309,10 @@ Hi kr1json! You've successfully authenticated, but GitHub does not provide shell
 	url = git@kr1json2.github.com:kr1json2/kr1json.github.io.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 ...
+</code></pre>
+<h4>MAC에서 ssh-agent에 등록하는 방법</h4>
+<p><code>-K</code> 옵션은 MAC에서 재부팅해도 사용할수 있는 옵션</p>
+<pre><code class="bash">ssh-add -K keyfile
 </code></pre>
 
                         </div>
