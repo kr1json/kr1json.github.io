@@ -85,88 +85,7 @@
     "@type": "TechArticle",
     "dependencies": "",
     "proficiencyLevel": "Beginner",
-    "articleBody": "기존에 사용하던 계정과는 다른 계정의 github을 사용해야 할때가 있습니다.
-
-회사 pc에는 회사 계정이 설정되어 있어 개인 계정을 사용하기 불편한데 이럴때 개인계정에 ssh key 설정을 해놓으면 편리합니다.
-
-
-### SSH Key 생성 
-
-계정별로 파일이름을 지정해주는 것이 좋습니다.
-
-```bash
-$ ssh-keygen
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/kr1json/.ssh/id_rsa): /User/kr1json/.ssh/kr1json.github
-```
-
-private Key와 public Key가 생성됩니다. github에는 public Key를 등록하면 됩니다.. [github SSH Key 등록 방법 링크](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
-
-```bash
-$ ls ~/.ssh
-kr1json.github kr1json.github.pub
-```
-
-
-### ~/.ssh/config 설정 
-
-```
-Host github.com
-	User git
-	IdentityFile ~/.ssh/kr1json.github
-	AddKeysToAgent yes
-	UseKeychain yes
-```
-
-### github 등록 확인 방법 
-
-```bash
-$ ssh -T git@github.com
-Hi kr1json! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-```
-
-
-### .git/config 설정 변경
-
-remote url을 수정합니다. 
-
-```bash
-...
-[remote &#34;origin&#34;]
-	url = git@github.com:kr1json/kr1json.github.io.git
-	fetch = +refs/heads/*:refs/remotes/origin/*
-...
-```
-
-#### 다른계정을 더 추가하는 방법
-
-* ~/.ssh/config
-
-```
-Host kr1json2.github.com
-    HostName github.com
-	User git
-	IdentityFile ~/.ssh/kr1json2.github
-	AddKeysToAgent yes
-	UseKeychain yes
-```
-
-* .git/config
-
-```bash
-...
-[remote &#34;origin&#34;]
-	url = git@kr1json2.github.com:kr1json2/kr1json.github.io.git
-	fetch = +refs/heads/*:refs/remotes/origin/*
-...
-```
-
-#### MAC에서 ssh-agent에 등록하는 방법
-`-K` 옵션은 MAC에서 재부팅해도 사용할수 있는 옵션
-```bash
-ssh-add -K keyfile
-```
-",
+    "articleBody": "기존에 사용하던 계정과는 다른 계정의 을 사용해야 할때가 있습니다 회사 에는 회사 계정이 설정되어 있어 개인 계정을 사용하기 불편한데 이럴때 개인계정에 설정을 해놓으면 편리합니다 ",
     "articleSection": "Programmer",
     "about": "git ssh 이용시 여러 계정 사용 방법",
     "author": "json",
@@ -222,9 +141,9 @@ ssh-add -K keyfile
                     
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
-                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
-                    
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
+                    
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
                     
                 </ul>
             </div>
@@ -245,6 +164,14 @@ ssh-add -K keyfile
                     <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
                     
                     <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
+                    
+                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
+                    
+                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
+                    
+                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
@@ -271,14 +198,6 @@ ssh-add -K keyfile
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
-                    
-                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
-                    
-                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
-                    
-                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                 </ul>
             </div>

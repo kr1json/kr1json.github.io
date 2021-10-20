@@ -85,84 +85,7 @@
     "@type": "TechArticle",
     "dependencies": "",
     "proficiencyLevel": "Expert",
-    "articleBody": "특정 클라이언트를 위한 DNS Server가 필요하게 되었습니다.
-
-모든 DNS Query를 차단하고 white list에 지정해 놓은 URL만 해당 URL로 포워드 해줘야 합니다.
-
-white list에 지정할 URL은 google.com 같은 public URL이라서 외부 DNS와 같은 응답을 줄 수 있게 `recursion yes`를 셋팅해야하고
-
-클라이언트는 IP가 수시로 변경되어 acl 설정을 할 수 없고 `allow-query { any; }`로 설정 해야합니다.
-
-즉, 외부에서의 **query**와 **recursion** 모두 허가하고 white list에 있는 URL만 허용하는 DNS가 필요했습니다.
-
-
-#### /etc/bind/named.conf
- 
-```bash
-options {
-	recursion yes;              # localhost에 설정되지 않은 DNS도 찾아서 응답해줍니다. 
-	allow-query { any; };       # 모든 쿼리를 허용합니다.
-	response-policy {           # RPZ 설정
-		zone &#34;rpz.whitelist&#34;;   
-		zone &#34;rpz&#34;;
-	};
-};
-
-zone &#34;rpz.whitelist&#34; {
-    type master;
-    file &#34;/etc/bind/db.rpz.whitelist&#34;;
-    allow-query { localhost; };
-    allow-transfer { none; };
-};
-
-zone &#34;rpz&#34; {
-    type master;
-    file &#34;/etc/bind/db.rpz&#34;;
-    allow-query { localhost; };
-    allow-transfer { none; };
-};
-```
-
-
-#### /etc/bind/db.rpz.whitelist
-
-```bash
-$TTL 604800
-@            IN    SOA  localhost. root.localhost.  (
-                      2018122401   ; serial
-                      360  ; refresh
-                      360  ; retry
-                      1W  ; expiry
-                      3H) ; minimum
-
-                      IN     NS      localhost.
-
-google.com                 CNAME   rpz-passthru. # 여기서 설정한 DNS는 해당 DNS로 포워딩됩니다.  
-*.google.com               CNAME   rpz-passthru.
-```
-
-
-#### /etc/bind/db.rpz
-
-```bash
-$TTL 604800
-@            IN    SOA  localhost. root.localhost.  (
-                     2018122401   ; serial
-                     360  ; refresh
-                     1H  ; retry
-                     1W  ; expiry
-                     3H) ; minimum
-
-             IN      NS    localhost.
-
-*   A   1.1.1.1 # 나의 DNS Server IP
-```
-
-##### 참조
-
-* https://joungkyun.gitbooks.io/annyung-3-user-guide/chapter5.html
-* https://www.isc.org/wp-content/uploads/2017/11/BIND_RPZ.pdf
-",
+    "articleBody": "특정 클라이언트를 위한 가 필요하게 되었습니다 모든 를 차단하고 에 지정해 놓은 만 해당 로 포워드 해줘야 합니다 에 지정할 은 같은 이라서 외부 와 같은 응답을 줄 수 있게 를 ",
     "articleSection": "Programmer",
     "about": "DNS WhiteList 설정하는 방법",
     "author": "json",
@@ -218,9 +141,9 @@ $TTL 604800
                     
                     <li><a href="/category/설정"><i class="icon-book"></i> 설정</a></li>
                     
-                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
-                    
                     <li><a href="/category/장애"><i class="icon-book"></i> 장애</a></li>
+                    
+                    <li><a href="/category/클라우드"><i class="icon-book"></i> 클라우드</a></li>
                     
                 </ul>
             </div>
@@ -241,6 +164,14 @@ $TTL 604800
                     <li><a href="/tags/dns"><i class="icon-book"></i> dns</a></li>
                     
                     <li><a href="/tags/server"><i class="icon-book"></i> server</a></li>
+                    
+                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
+                    
+                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
+                    
+                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
+                    
+                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                     <li><a href="/tags/aws"><i class="icon-book"></i> aws</a></li>
                     
@@ -267,14 +198,6 @@ $TTL 604800
                     <li><a href="/tags/엘라스틱"><i class="icon-book"></i> 엘라스틱</a></li>
                     
                     <li><a href="/tags/nodejs"><i class="icon-book"></i> nodejs</a></li>
-                    
-                    <li><a href="/tags/tls"><i class="icon-book"></i> tls</a></li>
-                    
-                    <li><a href="/tags/mysql"><i class="icon-book"></i> mysql</a></li>
-                    
-                    <li><a href="/tags/ssl"><i class="icon-book"></i> ssl</a></li>
-                    
-                    <li><a href="/tags/java"><i class="icon-book"></i> java</a></li>
                     
                 </ul>
             </div>
